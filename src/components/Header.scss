@@ -1,0 +1,29 @@
+.header {
+    width: 100%;
+    background: #192026;
+    // background: #17171a;
+    border-bottom: 1px solid #ffffff22;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+
+    a {
+        color: #fff;
+    }
+
+    &-menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+    }
+
+    &-content {
+        display: flex;
+        align-items: center;
+    }
+
+    &-link {
+        margin: 0 0 0 20px;
+    }
+}
