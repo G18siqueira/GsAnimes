@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 import api from '../services/api';
 import { Link } from 'react-router-dom';
@@ -15,31 +15,50 @@ import './Home.scss';
 const Home = () => {
   const [animesTop, setAnimesTop] = useState([]);
   const [animesSeason, setAnimesSeason] = useState([]);
+  const [upcomingSeason, setUpcomingSeason] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function loadAmnimesTop() {
-      try {
-        const [topResponse, seasonsResponse] = await Promise.all([
+  const loadAnimesTop = useCallback(async () => {
+    try {
+      const [topResponse, seasonsResponse, upcomingResponse] =
+        await Promise.all([
           api.get('top/anime'),
           api.get('seasons/now'),
+          api.get('seasons/upcoming'),
         ]);
 
-        if (topResponse.status === 200) {
-          setAnimesTop(topResponse.data.data.slice(0, 5));
-        }
-        if (seasonsResponse.status === 200) {
-          setAnimesSeason(seasonsResponse.data.data.slice(0, 10));
-        }
-      } catch (error) {
-        console.log(error);
+      if (topResponse.status === 200) {
+        setAnimesTop(topResponse.data.data.slice(0, 5));
       }
-    }
 
-    loadAmnimesTop();
+      if (seasonsResponse.status === 200) {
+        setAnimesSeason(seasonsResponse.data.data.slice(0, 10));
+      }
+
+      if (upcomingResponse.status === 200) {
+        setUpcomingSeason(upcomingResponse.data.data.slice(0, 10));
+      }
+
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
+  useEffect(() => {
+    loadAnimesTop();
+  }, [loadAnimesTop]);
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <h2>Loading Page Sessions...</h2>
+      </div>
+    );
+  }
+
   return (
-    <section className="home all">
+    <section className="home">
       <div className="container">
         {/* EXPLORE */}
         <div className="home-explore">
@@ -63,7 +82,7 @@ const Home = () => {
                   <SwiperSlide key={anime.mal_id}>
                     <Link to={`/anime/${anime.mal_id}`}>
                       <div className="imagem">
-                        <img src={anime.images.jpg.large_image_url} alt="" />
+                        <img src={anime.images.webp.large_image_url} alt="" />
                       </div>
 
                       <div className="infos">
@@ -106,7 +125,7 @@ const Home = () => {
                       <div className="card-content">
                         <div className="image">
                           <img
-                            src={season.images.jpg.image_url}
+                            src={season.images.webp.image_url}
                             alt={season.title}
                           />
                         </div>
@@ -114,6 +133,55 @@ const Home = () => {
                         <p>
                           <strong>{season.title}</strong>
                           <span>(season {season.season})</span>
+                        </p>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
+        </div>
+
+        <div className="home-season">
+          <div className="home-season-intro">
+            <h2 className="home-title">Season Upcoming</h2>
+          </div>
+
+          <div className="home-season-list">
+            <Swiper
+              modules={[Navigation, Pagination]}
+              navigation
+              spaceBetween={50}
+              slidesPerView={2}
+              onSlideChange={() => console.log('slide change')}
+              onSwiper={(swiper) => console.log(swiper)}
+              breakpoints={{
+                768: {
+                  //min-width: 768px
+                  slidesPerView: 6,
+                  spaceBetween: 15,
+                },
+              }}
+            >
+              {upcomingSeason.map((upcoming) => {
+                return (
+                  <SwiperSlide key={upcoming.mal_id}>
+                    <Link
+                      className="card-link"
+                      to={`/anime/${upcoming.mal_id}`}
+                    >
+                      <div className="card-content">
+                        <div className="image">
+                          <img
+                            src={upcoming.images.webp.image_url}
+                            alt={upcoming.title}
+                          />
+                        </div>
+
+                        <p>
+                          <strong>{upcoming.title}</strong>
+                          <span>(upcoming {upcoming.upcoming})</span>
                         </p>
                       </div>
                     </Link>

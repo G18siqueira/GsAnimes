@@ -1,0 +1,61 @@
+.favorite {
+    &-content {
+        h1 {
+            text-align: center;
+            margin: 0 0 50px;
+        }
+    }
+
+    &-msg {
+        text-align: center;
+    }
+
+    &-item {
+        margin: 0 0 30px;
+
+        @media (min-width: 768px) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            margin: 0 0 15px;
+
+            @media (min-width: 768px) {
+                margin: 0 15px 0 0;
+            }
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 0 10px 0 0;
+        }
+
+        span {
+            max-width: 500px;
+        }
+    }
+
+    &-btn-content {
+        flex: none;
+        width: 100%;
+
+        @media (min-width: 768px) {
+            width: auto;
+
+        }
+
+        button {
+            width: 100%;
+
+            span {
+                margin: 0 5px 0 0;
+            }
+        }
+    }
+}

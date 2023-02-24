@@ -9,17 +9,17 @@ const Header = () => {
           <div className="header-logo">
             <h2>
               <Link className="" to="/">
-                GsAnimes
+                GsAnimeZone
               </Link>
             </h2>
           </div>
 
           <div className="header-content">
             <Link className="header-link" to="/animes">
-              Animes
+              Search Animes
             </Link>
-            <Link className="header-link" to="/meus-animes">
-              Meus Animes
+            <Link className="header-link" to="/animes-favoritos">
+              My Favorite Animes
             </Link>
           </div>
         </div>
