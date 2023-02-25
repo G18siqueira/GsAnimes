@@ -25,10 +25,38 @@ const Anime = () => {
         setLoading(false);
       }
     } catch (error) {
-      console.log(error);
       setCanNavigate(false);
       setTimeout(() => setCanNavigate(true), 5000); // espera 5 segundos
       navigation('/', { replace: true });
+
+      if (error.response) {
+        const { status } = error.response;
+
+        switch (status) {
+          case 400:
+            console.log('Bad request');
+            break;
+          case 401:
+            console.log('Unauthorized');
+            break;
+          case 403:
+            console.log('Forbidden');
+            break;
+          case 404:
+            console.log('Not found');
+            break;
+          case 500:
+            console.log('Internal server error');
+            break;
+          default:
+            console.log('Unknown error');
+            break;
+        }
+      } else if (error.request) {
+        console.log('No response from server');
+      } else {
+        console.log('Error', error.message);
+      }
     }
   }, [id, navigation]);
 

@@ -15,7 +15,7 @@ const Header = () => {
           </div>
 
           <div className="header-content">
-            <Link className="header-link" to="/animes">
+            <Link className="header-link" to="/animes?q=">
               Search Animes
             </Link>
             <Link className="header-link" to="/animes-favoritos">

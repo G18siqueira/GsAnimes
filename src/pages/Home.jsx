@@ -41,12 +41,43 @@ const Home = () => {
 
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        const { status } = error.response;
+
+        switch (status) {
+          case 400:
+            console.log('Bad request');
+            break;
+          case 401:
+            console.log('Unauthorized');
+            break;
+          case 403:
+            console.log('Forbidden');
+            break;
+          case 404:
+            console.log('Not found');
+            break;
+          case 500:
+            console.log('Internal server error');
+            break;
+          default:
+            console.log('Unknown error');
+            break;
+        }
+      } else if (error.request) {
+        console.log('No response from server');
+      } else {
+        console.log('Error', error.message);
+      }
     }
   }, []);
 
   useEffect(() => {
-    loadAnimesTop();
+    const timeout = setTimeout(() => {
+      loadAnimesTop();
+    }, 1000); // espera 1 segundo antes de fazer a primeira requisição
+
+    return () => clearTimeout(timeout); //evita que a função loadAnimesTop seja executada várias vezes em paralelo.
   }, [loadAnimesTop]);
 
   if (loading) {
@@ -60,6 +91,7 @@ const Home = () => {
   return (
     <section className="home">
       <div className="container">
+        {}
         {/* EXPLORE */}
         <div className="home-explore">
           <div className="home-explore-intro">

@@ -1,0 +1,33 @@
+.pagination {
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        margin: 0 5px;
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background: none;
+        color: #fff;
+        outline: none;
+        border: 1px solid #fff;
+        cursor: pointer;
+
+        &.active {
+            background: #fff;
+            color: #192026;
+            font-weight: bold;
+        }
+    }
+}
