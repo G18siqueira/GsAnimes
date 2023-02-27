@@ -5,7 +5,6 @@ import {
   AiFillHeart,
   AiOutlineLoading3Quarters,
 } from 'react-icons/ai';
-import {} from 'react-icons/ai';
 import { toast } from 'react-toastify';
 
 import api from '../services/api';

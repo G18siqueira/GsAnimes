@@ -1,5 +1,26 @@
 :root {
   --toastify-color-dark: #1f212b !important;
+
+  /* Define a largura e altura da barra de rolagem */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+  }
+
+  /* Define a cor do fundo da barra de rolagem */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Define a cor da área da barra de rolagem */
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff22;
+  }
+
+  /* Define a cor do indicador de rolagem */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f0f;
+  }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
@@ -19,9 +40,7 @@
   text-decoration: none;
 }
 
-
 body {
-
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -35,7 +54,8 @@ body {
 }
 
 main {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 105px);
+  // min-height: calc(101vh - 108px);
   padding: 110px 0 71px;
 }
 

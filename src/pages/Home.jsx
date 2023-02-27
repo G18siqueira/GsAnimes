@@ -13,6 +13,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
 import './Home.scss';
+import Card from '../components/Card';
 
 const Home = () => {
   const [animesTop, setAnimesTop] = useState([]);
@@ -117,20 +118,23 @@ const Home = () => {
               {animesTop.map((anime) => {
                 return (
                   <SwiperSlide key={anime.mal_id}>
-                    <Link to={`/anime/${anime.mal_id}`}>
-                      <div className="imagem">
-                        <img src={anime.images.webp.large_image_url} alt="" />
-                      </div>
-
-                      <div className="infos">
-                        <h3>{anime.title}</h3>
-                        <p>{anime.synopsis}</p>
-                      </div>
-                    </Link>
+                    <Card
+                      urlAnime={`/anime/${anime.mal_id}`}
+                      key={anime.mal_id}
+                      srcImage={anime.images.webp.large_image_url}
+                      title={anime.title}
+                      synopsis={anime.synopsis}
+                    />
                   </SwiperSlide>
                 );
               })}
             </Swiper>
+          </div>
+
+          <div className="home-season-more">
+            <Link className="" to="/top/anime">
+              See More
+            </Link>
           </div>
         </div>
 
@@ -158,25 +162,24 @@ const Home = () => {
               {animesSeason.map((season) => {
                 return (
                   <SwiperSlide key={season.mal_id}>
-                    <Link className="card-link" to={`/anime/${season.mal_id}`}>
-                      <div className="card-content">
-                        <div className="image">
-                          <img
-                            src={season.images.webp.image_url}
-                            alt={season.title}
-                          />
-                        </div>
-
-                        <p>
-                          <strong>{season.title}</strong>
-                          <span>(season {season.season})</span>
-                        </p>
-                      </div>
-                    </Link>
+                    <Card
+                      urlAnime={`/anime/${season.mal_id}`}
+                      key={season.mal_id}
+                      srcImage={season.images.jpg.image_url}
+                      title={season.title}
+                      japaneseTitle={''}
+                      season={`season ${season.season}`}
+                    />
                   </SwiperSlide>
                 );
               })}
             </Swiper>
+
+            <div className="home-season-more">
+              <Link className="" to="/seasons/now">
+                See More
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -204,28 +207,24 @@ const Home = () => {
               {upcomingSeason.map((upcoming) => {
                 return (
                   <SwiperSlide key={upcoming.mal_id}>
-                    <Link
-                      className="card-link"
-                      to={`/anime/${upcoming.mal_id}`}
-                    >
-                      <div className="card-content">
-                        <div className="image">
-                          <img
-                            src={upcoming.images.webp.image_url}
-                            alt={upcoming.title}
-                          />
-                        </div>
-
-                        <p>
-                          <strong>{upcoming.title}</strong>
-                          <span>(upcoming {upcoming.upcoming})</span>
-                        </p>
-                      </div>
-                    </Link>
+                    <Card
+                      urlAnime={`/anime/${upcoming.mal_id}`}
+                      key={upcoming.mal_id}
+                      srcImage={upcoming.images.jpg.image_url}
+                      title={upcoming.title}
+                      japaneseTitle={''}
+                      season={upcoming.season}
+                    />
                   </SwiperSlide>
                 );
               })}
             </Swiper>
+
+            <div className="home-season-more">
+              <Link className="" to="/seasons/upcoming">
+                See More
+              </Link>
+            </div>
           </div>
         </div>
       </div>

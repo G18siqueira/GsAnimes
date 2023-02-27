@@ -3,13 +3,19 @@ import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
+import Card from '../components/Card';
 import Pagination from '../components/Pagination';
 
 import api from '../services/api';
 
 import './Busca.scss';
 
-const LIMIT = 12;
+const ismobile = window.innerWidth <= 768;
+
+let LIMIT = 20;
+if (ismobile) {
+  LIMIT = 10;
+}
 
 const Busca = () => {
   const [animes, setAnimes] = useState([]);
@@ -89,6 +95,9 @@ const Busca = () => {
         {animes ? (
           <div className="search-content">
             <h1 className="search-tit">Search for an anime!</h1>
+            <p className="season-subtit">
+              Search here for the anime you are looking for!
+            </p>
 
             <div className="search-form">
               <form onSubmit={handleSubmit}>
@@ -124,24 +133,13 @@ const Busca = () => {
               <div className="search-card-content">
                 {animes.data.map((anime) => {
                   return (
-                    <Link
-                      className="search-link"
-                      to={`/anime/${anime.mal_id}`}
+                    <Card
+                      urlAnime={`/anime/${anime.mal_id}`}
                       key={anime.mal_id}
-                    >
-                      <div className="search-card">
-                        <div className="image">
-                          <img src={anime.images.jpg.image_url} alt="" />
-                        </div>
-
-                        <p>
-                          <span>{anime.title}</span>
-                          <br />
-                          {/* <span>{anime.title_english} / </span> */}
-                          <span className="japanese">{`(${anime.title_japanese})`}</span>
-                        </p>
-                      </div>
-                    </Link>
+                      srcImage={anime.images.jpg.image_url}
+                      title={anime.title}
+                      japaneseTitle={anime.title_japanese}
+                    />
                   );
                 })}
               </div>

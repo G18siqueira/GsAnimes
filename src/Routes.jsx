@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Anime from './pages/Anime';
 import Favoritos from './pages/Favoritos';
 import Busca from './pages/Busca';
+import Season from './pages/Season';
+import Top from './pages/Top';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
       {
         path: 'anime/:id',
         element: <Anime />,
+      },
+      {
+        path: 'top/anime',
+        element: <Top />,
+      },
+      {
+        path: 'seasons/:nameSeason',
+        element: <Season />,
       },
       {
         path: 'animes',

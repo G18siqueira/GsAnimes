@@ -1,0 +1,72 @@
+.card {
+    color: #fff;
+
+    &:hover {
+        color: #fff;
+    }
+
+    &-content {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+    }
+
+    &-image {
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+
+        &::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(29, 29, 29, 0) 0%, #0F1E29 100%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.1);
+            }
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+    }
+
+    &-infos {
+        display: grid;
+        gap: 15px 0;
+        padding: 0 5px;
+        position: absolute;
+        bottom: 10px;
+        z-index: 2;
+
+        p {
+            font-size: 1em;
+            font-weight: 300;
+
+            &.japanese {
+                font-size: 12px;
+                font-weight: 100;
+            }
+
+            &.season {
+                font-size: 14px;
+                font-weight: 300;
+                text-decoration: underline;
+            }
+
+
+        }
+    }
+}
