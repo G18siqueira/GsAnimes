@@ -18,12 +18,101 @@
         height: 70px;
     }
 
+    &-logo {
+        .active {
+            opacity: 0;
+            visibility: hidden;
+            transition: all .2s ease-in-out;
+        }
+    }
+
     &-content {
-        display: flex;
-        align-items: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(100%);
+        transition: transform .2s ease-in-out;
+
+
+        &.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            width: calc(100% - 80px);
+            height: 100%;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background: #192026;
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+            transition: transform .2s ease-in-out;
+            z-index: 1;
+
+            &::before {
+                content: '';
+                width: 80px;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: -80px;
+                background-color: #19202699;
+                backdrop-filter: blur(3px);
+            }
+        }
+
+        @media (min-width: 768px) {
+            position: relative;
+            opacity: initial;
+            visibility: initial;
+        }
     }
 
     &-link {
-        margin: 0 0 0 20px;
+        margin: 0 20px 40px;
+        font-size: 1.5em;
+
+        @media (min-width: 768px) {
+            margin: 0 0 0 20px;
+            font-size: initial;
+        }
+
+        &_logo {
+            position: absolute;
+            top: 23px;
+            left: 20px;
+            font-size: 1.5em;
+            margin: 0;
+
+            @media (min-width: 768px) {
+                display: none;
+            }
+        }
+    }
+
+    &-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #192026;
+        width: 40px;
+        height: 40px;
+        font-size: 1.3em;
+        padding: 0;
+        outline: none;
+        position: relative;
+        z-index: 2;
+
+        &:hover {
+            background-color: #192026;
+        }
+
+        @media (min-width: 768px) {
+            display: none;
+        }
     }
 }

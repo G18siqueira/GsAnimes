@@ -1,10 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
 
-import api from '../services/api';
 import { Link } from 'react-router-dom';
+
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper';
+import api from '../services/api';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -84,6 +86,9 @@ const Home = () => {
     return (
       <div className="loading">
         <h2>Loading Page Sessions...</h2>
+        <span>
+          <AiOutlineLoading3Quarters />
+        </span>
       </div>
     );
   }

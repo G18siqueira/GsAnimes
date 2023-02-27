@@ -33,6 +33,7 @@ function Pagination({ limit, total, offset, setOffset }) {
       <ul>
         <li>
           <button
+            className="pagination-btnCustom"
             onClick={() => onPageChange(current - 1)}
             disabled={current === 1}
           >
@@ -55,6 +56,7 @@ function Pagination({ limit, total, offset, setOffset }) {
 
         <li>
           <button
+            className="pagination-btnCustom"
             onClick={() => onPageChange(current + 1)}
             disabled={current === pages}
           >

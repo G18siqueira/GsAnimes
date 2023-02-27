@@ -1,3 +1,7 @@
+:root {
+  --toastify-color-dark: #1f212b !important;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
 
 // GERAL
@@ -14,6 +18,7 @@
   box-sizing: border-box;
   text-decoration: none;
 }
+
 
 body {
 
@@ -45,7 +50,7 @@ a {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.2em;
   line-height: 1.1;
 }
 
@@ -81,11 +86,29 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
+
+  svg {
+    font-size: 40px;
+    margin: 30px 0 0;
+    animation: loop .8s ease-in-out infinite;
+  }
+
+  @keyframes loop {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
+
 
 // CONTAINER RESPONSIVO
 @media (min-width: 1201px) {
@@ -97,6 +120,7 @@ button:focus-visible {
 @media (max-width: 1200px) {
   .container {
     max-width: 960px;
+    padding: 0 40px;
   }
 }
 
@@ -109,6 +133,7 @@ button:focus-visible {
 @media(max-width: 768px) {
   .container {
     max-width: 540px;
+    padding: 0 20px;
   }
 }
 
@@ -116,7 +141,6 @@ button:focus-visible {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 40px;
 }
 
 // SWIPER

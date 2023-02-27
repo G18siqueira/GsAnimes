@@ -2,7 +2,6 @@
     &-tit {
         text-align: center;
         margin: 0 0 50px;
-        font-size: 32px;
     }
 
     &-form {
@@ -58,8 +57,9 @@
 
     &-card-content {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         gap: 20px 20px;
+        margin: 0 0 50px;
 
         @media(min-width: 1200px) {
             grid-template-columns: repeat(4, 260px);
@@ -97,7 +97,7 @@
 
             img {
                 width: 100%;
-                height: 320px;
+                height: 310px;
                 object-fit: cover;
                 transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
 

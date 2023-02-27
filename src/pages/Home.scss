@@ -18,15 +18,22 @@
         }
 
         &-banner {
-            width: 100%;
             position: relative;
+            margin: 0 -20px;
+
+            @media(min-width: 1200px) {
+                width: 100%;
+            }
 
             .imagem {
                 height: 200px;
                 margin: 0 0 24px;
                 position: relative;
-                border-radius: 12px;
                 overflow: hidden;
+
+                @media (min-width: 768px) {
+                    border-radius: 12px;
+                }
 
                 &::before {
                     content: '';
@@ -52,6 +59,9 @@
 
             .infos {
                 color: #fff;
+                padding: 0 20px;
+                max-height: 180px;
+                margin: 0 0 40px;
 
 
                 @media(min-width: 1200px) {
@@ -59,18 +69,26 @@
                     position: absolute;
                     left: 47px;
                     bottom: 39px;
+                    padding: initial;
+                    margin: initial;
                 }
 
                 h3 {
-                    font-size: 32px;
+                    font-size: 2em;
                     margin: 0 0 16px;
+                    max-height: 64px;
+                    overflow: hidden;
+
+                    @media(min-width: 768px) {
+                        max-height: initial;
+                    }
                 }
 
                 p {
                     font-size: 16px;
                     line-height: 25px;
                     font-weight: 300;
-                    max-height: 150px;
+                    max-height: 100px;
                     overflow: hidden;
                 }
             }
@@ -86,6 +104,14 @@
 
         &-list {
 
+            .swiper {
+                margin: 0 -20px 0 0;
+
+                @media (min-width: 768px) {
+                    margin: initial;
+                }
+            }
+
             .card-link {
                 color: #fff;
             }
@@ -93,9 +119,13 @@
             .card-content {
                 display: flex;
                 justify-content: center;
-                width: 170px;
+                width: 190px;
                 text-align: center;
                 position: relative;
+
+                @media (min-width: 768px) {
+                    width: 170px;
+                }
             }
 
             .image {

@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { FiSearch } from 'react-icons/fi';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import Pagination from '../components/Pagination';
 
@@ -8,7 +9,7 @@ import api from '../services/api';
 
 import './Busca.scss';
 
-const LIMIT = 16;
+const LIMIT = 12;
 
 const Busca = () => {
   const [animes, setAnimes] = useState([]);
@@ -87,7 +88,7 @@ const Busca = () => {
       <div className="container">
         {animes ? (
           <div className="search-content">
-            <h1>Search for an anime!</h1>
+            <h1 className="search-tit">Search for an anime!</h1>
 
             <div className="search-form">
               <form onSubmit={handleSubmit}>
@@ -119,16 +120,6 @@ const Busca = () => {
             </div>
           )} */}
 
-            {animes.pagination && (
-              <Pagination
-                limit={LIMIT}
-                total={animes.pagination.items.total}
-                offset={offset}
-                setOffset={setOffset}
-                key={`pagination-${page}`}
-              />
-            )}
-
             {animes.data && (
               <div className="search-card-content">
                 {animes.data.map((anime) => {
@@ -155,12 +146,23 @@ const Busca = () => {
                 })}
               </div>
             )}
+
+            {animes.pagination && (
+              <Pagination
+                limit={LIMIT}
+                total={animes.pagination.items.total}
+                offset={offset}
+                setOffset={setOffset}
+                key={`pagination-${page}`}
+              />
+            )}
           </div>
         ) : (
-          <div className="loading all">
-            <div className="container">
-              <h2>Loading content...</h2>
-            </div>
+          <div className="loading">
+            <h2>Loading content...</h2>
+            <span>
+              <AiOutlineLoading3Quarters />
+            </span>
           </div>
         )}
       </div>

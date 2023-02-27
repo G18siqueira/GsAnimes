@@ -30,7 +30,7 @@ const Favoritos = () => {
     <section className="favorite">
       <div className="container">
         <div className="favorite-content">
-          <h1>Meus Animes</h1>
+          <h1 className="favorite-tit">My Favorite Animes</h1>
 
           {animes.length === 0 && (
             <p className="favorite-msg">
@@ -46,7 +46,7 @@ const Favoritos = () => {
                     <div className="favorite-image">
                       <img src={item.images.webp.image_url} alt={item.title} />
                     </div>
-                    <span>{item.title}</span>
+                    <span className="favorite-title">{item.title}</span>
                   </Link>
                   <div className="favorite-btn-content">
                     <button onClick={() => handleDeletion(item.mal_id)}>

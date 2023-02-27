@@ -1,4 +1,7 @@
 .pagination {
+
+
+
     ul {
         display: flex;
         align-items: center;
@@ -12,6 +15,11 @@
         margin: 0 5px;
     }
 
+    &-btnCustom {
+        font-size: 1.1em;
+        padding: 0;
+    }
+
     button {
         display: flex;
         align-items: center;
@@ -23,6 +31,11 @@
         outline: none;
         border: 1px solid #fff;
         cursor: pointer;
+
+        &:hover {
+            background: #fff;
+            color: #192026;
+        }
 
         &.active {
             background: #fff;

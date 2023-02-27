@@ -1,6 +1,11 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import {
+  AiOutlineHeart,
+  AiFillHeart,
+  AiOutlineLoading3Quarters,
+} from 'react-icons/ai';
+import {} from 'react-icons/ai';
 import { toast } from 'react-toastify';
 
 import api from '../services/api';
@@ -12,7 +17,6 @@ const Anime = () => {
 
   const [anime, setAnime] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [canNavigate, setCanNavigate] = useState(true);
 
   const navigation = useNavigate();
 
@@ -25,8 +29,6 @@ const Anime = () => {
         setLoading(false);
       }
     } catch (error) {
-      setCanNavigate(false);
-      setTimeout(() => setCanNavigate(true), 5000); // espera 5 segundos
       navigation('/', { replace: true });
 
       if (error.response) {
@@ -61,10 +63,12 @@ const Anime = () => {
   }, [id, navigation]);
 
   useEffect(() => {
-    if (canNavigate) {
+    const timeout = setTimeout(() => {
       loadAnime();
-    }
-  }, [loadAnime, canNavigate]);
+    }, 1000); // espera 1 segundo antes de fazer a primeira requisição
+
+    return () => clearTimeout(timeout); //evita que a função loadAnimesTop seja executada várias vezes em paralelo.
+  }, [loadAnime]);
 
   const favoriteAnime = () => {
     const myList = localStorage.getItem('@animes');
@@ -87,6 +91,9 @@ const Anime = () => {
     return (
       <div className="loading">
         <h2>Loading Anime Information...</h2>
+        <span>
+          <AiOutlineLoading3Quarters />
+        </span>
       </div>
     );
   }
@@ -101,7 +108,17 @@ const Anime = () => {
           </div>
 
           <div className="anime-trailer">
-            <iframe src={anime.trailer.embed_url}></iframe>
+            {anime.trailer.embed_url === null ? (
+              <div className="notTrailer">
+                <img
+                  src={anime.images.webp.large_image_url}
+                  alt={anime.title}
+                />
+                <p>This anime has no trailer...</p>
+              </div>
+            ) : (
+              <iframe src={anime.trailer.embed_url}></iframe>
+            )}
           </div>
 
           <div className="anime-intro">
